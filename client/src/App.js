@@ -2,7 +2,6 @@ import { BrowserRouter, Navigate, Routes, Route } from "react-router-dom";
 import HomePage from "./scenes/homePage";
 import LoginPage from "./scenes/loginPage";
 import ProfilePage from "./scenes/profilPage";
-import Navbar from "./scenes/navbar";
 import { useMemo } from "react";
 import { useSelector } from "react-redux";
 import { CssBaseline, ThemeProvider } from "@mui/material";
@@ -12,7 +11,8 @@ import { themeSettings } from "./theme.js";
 const App = () => {
   // set the theme based on the mode
   const mode = useSelector((state) => state.mode);
-  const theme = useMemo(() => createTheme(themeSettings[mode]), [mode]);
+  const theme = useMemo(() => createTheme(themeSettings(mode)), [mode]);
+  console.log(theme);
 
   return (
     <div className="app">
@@ -20,7 +20,7 @@ const App = () => {
         <ThemeProvider theme={theme}>
           <CssBaseline />
           <Routes>
-            <Route path="/" element={<Navbar />} />
+            <Route path="/" element={<LoginPage />} />
             <Route path="/home" element={<HomePage />} />
             <Route path="/profile/:userId" element={<ProfilePage />} />
           </Routes>
