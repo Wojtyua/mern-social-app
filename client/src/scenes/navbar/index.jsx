@@ -1,14 +1,17 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 const Navbar = () => {
+  const [profileToggle, setProfileToggle] = useState(false);
+  const navigate = useNavigate();
   return (
-    <div className="bg-secondary px-9 py-5 shadow-sm border-b border-gray-800 flex justify-between items-center">
-      <div className="flex items-center gap-6">
-        <h1 className="text-lg font-bold text-sky-400 md:text-xl">
-          <a>MERN-SOCIAL-APP</a>
+    <div className="bg-secondary px-11 py-5 shadow-sm border-b border-gray-800 flex justify-between items-center">
+      <div className="flex items-center gap-11">
+        <h1 className="text-xl font-bold text-sky-400 hover:cursor-pointer">
+          <a onClick={() => navigate("/home")}>MERN-SOCIAL-APP</a>
         </h1>
-        <div className="relative hidden md:block">
+        <div className="relative hidden lg:block">
           <input
             type="text"
             className=" bg-tertiary rounded-lg py-2 pl-3 px-3 w-80 focus:outline-none"
@@ -33,7 +36,7 @@ const Navbar = () => {
         </div>
       </div>
 
-      <div role="button" className="md:hidden">
+      <div role="button" className="bg-tertiary p-2 rounded-full lg:hidden">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
@@ -49,12 +52,13 @@ const Navbar = () => {
           />
         </svg>
       </div>
-      <div className="hidden md:flex items-center gap-4 text-color-icon">
+      <div className="hidden lg:flex items-center gap-4 text-color-icon">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 24 24"
           fill="currentColor"
           className="w-7 h-7"
+          role="button"
         >
           <path
             fillRule="evenodd"
@@ -67,6 +71,7 @@ const Navbar = () => {
           viewBox="0 0 24 24"
           fill="currentColor"
           className="w-7 h-7"
+          role="button"
         >
           <path
             fillRule="evenodd"
@@ -80,6 +85,7 @@ const Navbar = () => {
           viewBox="0 0 24 24"
           fill="currentColor"
           className="w-7 h-7"
+          role="button"
         >
           <path
             fillRule="evenodd"
@@ -87,18 +93,40 @@ const Navbar = () => {
             clipRule="evenodd"
           />
         </svg>
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 24 24"
-          fill="currentColor"
-          className="w-7 h-7"
-        >
-          <path
-            fillRule="evenodd"
-            d="M18.685 19.097A9.723 9.723 0 0021.75 12c0-5.385-4.365-9.75-9.75-9.75S2.25 6.615 2.25 12a9.723 9.723 0 003.065 7.097A9.716 9.716 0 0012 21.75a9.716 9.716 0 006.685-2.653zm-12.54-1.285A7.486 7.486 0 0112 15a7.486 7.486 0 015.855 2.812A8.224 8.224 0 0112 20.25a8.224 8.224 0 01-5.855-2.438zM15.75 9a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z"
-            clipRule="evenodd"
-          />
-        </svg>
+        <div>
+          <div
+            className="relative"
+            onClick={() => setProfileToggle(!profileToggle)}
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="currentColor"
+              className="w-7 h-7 "
+              role="button"
+            >
+              <path
+                fillRule="evenodd"
+                d="M18.685 19.097A9.723 9.723 0 0021.75 12c0-5.385-4.365-9.75-9.75-9.75S2.25 6.615 2.25 12a9.723 9.723 0 003.065 7.097A9.716 9.716 0 0012 21.75a9.716 9.716 0 006.685-2.653zm-12.54-1.285A7.486 7.486 0 0112 15a7.486 7.486 0 015.855 2.812A8.224 8.224 0 0112 20.25a8.224 8.224 0 01-5.855-2.438zM15.75 9a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z"
+                clipRule="evenodd"
+              />
+            </svg>
+            <div
+              className={`${
+                profileToggle ? "" : "hidden"
+              } absolute top-10 -left-64 w-72 h-96 bg-secondary shadow-lg p-3 rounded-lg border border-primary`}
+            >
+              <ul>
+                <li className="text-color-icon">
+                  <div></div>
+                </li>
+                <li className="text-color-icon">Profile</li>
+                <li className="text-color-icon">Profile</li>
+                <li className="text-color-icon">Profile</li>
+              </ul>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );
